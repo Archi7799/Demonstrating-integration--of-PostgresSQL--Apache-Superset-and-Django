@@ -1,0 +1,50 @@
+version: '3'
+
+services:
+   postgres:
+    image: postgres
+    container_name: postgres_container
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=superset
+      - POSTGRES_DB=mydb
+    ports:
+      - "5432:5432"
+#    volumes:
+#      - postgres_data:/var/lib/postgresql/data
+
+   superset:
+    build:
+      context: .
+      dockerfile: superset/dockerfile
+    container_name: superset_container
+    environment:
+      - ADMIN_USERNAME=admin
+      - ADMIN_EMAIL=admin@superset.com
+      - ADMIN_PASSWORD=admin
+      - SQLALCHEMY_DATABASE_URI=postgresql://postgres:superset@postgres:5432/mydb
+    ports:
+      - "8088:8088"
+    volumes:
+#      - /mnt/c/Users/archi/sup/superset-init.sh:/superset-init.sh
+ #     - /mnt/c/Users/archi/sup/superset_config.py:/app/superset_config.py
+       - .:/superset
+    depends_on:
+      - postgres
+
+   django:
+    build:
+      context: .
+      dockerfile: djangoapp/DjangoDockerfile
+    container_name: django_container
+    #command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    volumes:
+     # - /mnt/c/Users/archi/sup/DjangoDockerfile:/codeDjangoDockerfile
+      - .:/app
+    depends_on:
+      - superset
+
+volumes:
+  postgres_data:

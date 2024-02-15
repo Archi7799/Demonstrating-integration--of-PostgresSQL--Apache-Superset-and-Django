@@ -1,0 +1,25 @@
+# Use the official Python image as base
+FROM python:3.9
+
+# Install Django
+#RUN pip install django
+
+# Requirements are installed here to ensure they will be cached.
+RUN pip install requests
+
+# Requirements are installed here to ensure they will be cached.
+COPY ./requirements /requirements
+RUN pip install -r /requirements/local.txt
+
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the Django project directory into the container
+COPY ./djangoapp /app
+
+# Expose port
+EXPOSE 8000
+
+# Set the command to run the Django server
+CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
