@@ -15,8 +15,8 @@ services:
 
    superset:
     build:
-      context: .
-      dockerfile: superset/dockerfile
+      context: ./superset
+      dockerfile: dockerfile
     container_name: superset_container
     environment:
       - ADMIN_USERNAME=admin
@@ -28,7 +28,7 @@ services:
     volumes:
 #      - /mnt/c/Users/archi/sup/superset-init.sh:/superset-init.sh
  #     - /mnt/c/Users/archi/sup/superset_config.py:/app/superset_config.py
-       - .:/superset
+       - ./superset:/superset
     depends_on:
       - postgres
 
