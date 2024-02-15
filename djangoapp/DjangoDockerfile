@@ -3,13 +3,13 @@ FROM python:3.9
 
 # Install Django
 #RUN pip install django
-
+RUN pip install --upgrade pip
 # Requirements are installed here to ensure they will be cached.
 RUN pip install requests
 
 # Requirements are installed here to ensure they will be cached.
 COPY ./requirements /requirements
-RUN pip install -r /requirements/local.txt
+RUN pip install -r /requirements/base.txt
 
 
 # Set the working directory in the container
