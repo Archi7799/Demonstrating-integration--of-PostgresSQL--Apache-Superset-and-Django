@@ -4,4 +4,3 @@
 
 This is my result on my django 
 ![image](https://github.com/Archi7799/Demonstrating-integration--of-PostgresSQL--Apache-Superset-and-Django/assets/155450592/2529d55c-68dc-4d63-adeb-3ca212bfc74f)
-
