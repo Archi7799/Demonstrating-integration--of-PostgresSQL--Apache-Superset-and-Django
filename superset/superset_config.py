@@ -9,7 +9,6 @@ SUPERSET_WEBSERVER_BASEURL = 'http://django_container:8000/'
 SESSION_COOKIE_SAMESITE = None
 SESSION_COOKIE_HTTPONLY = False
 WTF_CSRF_ENABLED = False
-TALISMAN_ENABLED = False
 
 # Ensure public role behaves like Gamma
 GUEST_ROLE_NAME = "Gamma"
